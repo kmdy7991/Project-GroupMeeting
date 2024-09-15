@@ -1,0 +1,21 @@
+spring:
+  profiles:
+    active: dev
+
+  application:
+    name: group-meeting
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 50MB
+
+  jpa:
+    properties:
+      hibernate:
+        dialect=org:
+          hibernate:
+            dialect: PostgreSQLDialect
+server:
+  tomcat:
+    max-http-form-post-size: 150MB
