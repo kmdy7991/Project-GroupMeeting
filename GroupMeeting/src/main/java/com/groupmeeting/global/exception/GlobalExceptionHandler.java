@@ -1,6 +1,7 @@
 package com.groupmeeting.global.exception;
 
 import com.groupmeeting.global.exception.custom.BadRequestException;
+import com.groupmeeting.global.exception.custom.NotImageRequestException;
 import com.groupmeeting.global.exception.custom.ResourceNotFoundException;
 import com.groupmeeting.global.exception.custom.UnAuthorizedException;
 import com.groupmeeting.global.util.CustomResponse;
@@ -56,6 +57,18 @@ public class GlobalExceptionHandler {
                         e.getMessage() != null ? e.getMessage() : "")
                 );
     }
+
+    @ExceptionHandler(NotImageRequestException.class)
+    public ResponseEntity<CustomResponse<Object>> handleNotImageException(UnAuthorizedException e) {
+        return ResponseEntity
+                .status(HttpStatus.UNAUTHORIZED)
+                .body(new CustomResponse<>(
+                        HttpStatus.UNAUTHORIZED.value(),
+                        null,
+                        e.getMessage() != null ? e.getMessage() : "")
+                );
+    }
+
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<CustomResponse<Object>> handleOtherException(Exception e) {

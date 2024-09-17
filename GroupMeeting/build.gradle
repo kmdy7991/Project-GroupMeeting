@@ -4,6 +4,10 @@ plugins {
     id 'io.spring.dependency-management' version '1.1.6'
 }
 
+ext {
+    springCloudVersion = "2023.0.3"
+}
+
 group = 'com.back'
 version = '0.0.1-SNAPSHOT'
 
@@ -22,20 +26,48 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-web';
     implementation 'org.springframework.boot:spring-boot-starter-aop'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    // security
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+
+    // jwt
+    implementation 'io.jsonwebtoken:jjwt-api:0.12.6'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.6'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.6'
+
+    //
+    implementation 'org.bouncycastle:bcpkix-jdk18on:1.78.1'
 
     // ssr - link
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 
-    // db
-    runtimeOnly 'org.postgresql:postgresql'
+    // client
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+
 
     // s3 - profile image
     implementation platform("io.awspring.cloud:spring-cloud-aws-dependencies:3.1.1")
     implementation 'io.awspring.cloud:spring-cloud-aws-starter-s3'
+    implementation 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.2'
 
     // lombok
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+
+    // db
+    runtimeOnly 'org.postgresql:postgresql'
+
+    // json - db Mapping
+    implementation 'io.hypersistence:hypersistence-utils-hibernate-63:3.7.0'
+
+    // object mapping
+    // binding library를 통해 lombok 순서 상관없이 사용가능
+    implementation 'org.mapstruct:mapstruct:1.6.0'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.0'
+    implementation 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
 
     // swagger
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0'
@@ -49,13 +81,22 @@ dependencies {
     annotationProcessor "jakarta.annotation:jakarta.annotation-api"
     annotationProcessor "jakarta.persistence:jakarta.persistence-api"
 
-
+    // property assist tool
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 
     // test
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion"
+    }
 }
 
 tasks.named('test') {
     useJUnitPlatform()
+    jvmArgs '-Xshare:off'
 }
