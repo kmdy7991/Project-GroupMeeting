@@ -15,11 +15,15 @@ import java.io.InputStream;
 import java.util.UUID;
 
 @Component
-@RequiredArgsConstructor
 public class S3ImageService {
     private final S3Template s3Template;
-    @Value("${s3.bucket}")
-    private String bucketName;
+    private final String bucket;
+
+    S3ImageService(S3Template s3Template,
+                   @Value("${s3.bucket}") String bucket) {
+        this.s3Template = s3Template;
+        this.bucket = bucket;
+    }
 
     public String uploadImage(String folder, MultipartFile file) throws NotImageRequestException, IOException {
         var type = file.getContentType();
@@ -31,7 +35,7 @@ public class S3ImageService {
 
         try (InputStream is = file.getInputStream()) {
             S3Resource resource = s3Template.upload(
-                    bucketName,
+                    bucket,
                     fileName,
                     is,
                     ObjectMetadata.builder()
@@ -44,8 +48,12 @@ public class S3ImageService {
         }
     }
 
+    public String getImageUrl(String folder, String filename) throws NotImageRequestException {
+        return "https://harme.s3.ap-northeast-2.amazonaws.com/album/1748e8c4-aad6-4097-a1a1-49a4592ca017.jpg";
+    }
+
     public void deleteImage(String fileName) {
-        s3Template.deleteObject(bucketName, fileName);
+        s3Template.deleteObject(bucket, fileName);
     }
 
 

@@ -1,7 +1,7 @@
-package com.groupmeeting.user.entity;
+package com.groupmeeting.entity.user;
 
-import com.groupmeeting.user.type.DeviceType;
-import com.groupmeeting.user.type.SocialProvider;
+import com.groupmeeting.global.enums.Role;
+import com.groupmeeting.global.enums.SocialProvider;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -14,29 +14,34 @@ import java.time.LocalDateTime;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Long id;
 
-    @Column(nullable = false)
+    @Column(name = "social_provider_id", nullable = false)
     private String socialProviderId;
 
+    @Column(name = "nickname")
     private String nickname;
 
+    @Column(name = "profile_img")
     private String profileImg;
 
+    @Column(name = "device_token")
     private String deviceToken;
 
-    private String appleRefreshToken;
-
+    @Column(name = "last_launch_at")
     private LocalDateTime lastLaunchAt;
 
+    @Column(name = "badge_count")
     private int badgeCount;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(name = "social_provider", nullable = false, length = 30)
     private SocialProvider socialProvider;
 
     @Enumerated(EnumType.STRING)
-    private DeviceType deviceType;
+    @Column(name = "role", length = 10)
+    private Role role;
 
     @Builder
     public User(
@@ -45,8 +50,6 @@ public class User {
             String nickname,
             String profileImg,
             String deviceToken,
-            DeviceType deviceType,
-            String appleRefreshToken,
             LocalDateTime lastLaunchAt,
             int badgeCount
     ) {
@@ -55,9 +58,8 @@ public class User {
         this.nickname = nickname;
         this.profileImg = profileImg;
         this.deviceToken = deviceToken;
-        this.deviceType = deviceType;
-        this.appleRefreshToken = appleRefreshToken;
         this.lastLaunchAt = lastLaunchAt;
         this.badgeCount = badgeCount;
+        this.role = Role.USER;
     }
 }

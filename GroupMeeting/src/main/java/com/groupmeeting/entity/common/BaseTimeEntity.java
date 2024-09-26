@@ -1,4 +1,4 @@
-package com.groupmeeting.entity;
+package com.groupmeeting.entity.common;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;

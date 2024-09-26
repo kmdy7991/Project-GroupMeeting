@@ -38,7 +38,6 @@ public class WebConfig {
         javaTimeModule.addSerializer(
                 LocalDateTime.class,
                 new LocalDateTimeSerializer(DateTimeFormatter.ofPattern(dateFormat)));
-
         javaTimeModule.addDeserializer(
                 LocalDateTime.class,
                 new LocalDateTimeDeserializer(DateTimeFormatter.ofPattern(dateFormat))

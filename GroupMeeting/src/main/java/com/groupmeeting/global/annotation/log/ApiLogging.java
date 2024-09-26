@@ -1,4 +1,4 @@
-package com.groupmeeting.global.annotation;
+package com.groupmeeting.global.annotation.log;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Inherited;

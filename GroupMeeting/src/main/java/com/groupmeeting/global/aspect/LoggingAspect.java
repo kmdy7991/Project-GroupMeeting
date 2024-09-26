@@ -19,10 +19,9 @@ import java.util.List;
 @Component
 public class LoggingAspect {
 //    private final DiscordMessageService messageService;
-
 //    public SimpleLoggingAspect(DiscordMessageService messageService) {this.messageService = messageService;}
 
-    @Around("@annotation(com.groupmeeting.global.annotation.ApiLogging)")
+    @Around("@annotation(com.groupmeeting.global.annotation.log.ApiLogging)")
     public Object processCustomAnnotation(ProceedingJoinPoint joinPoint) throws Throwable {
         long start = System.currentTimeMillis();
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();

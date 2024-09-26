@@ -1,6 +1,6 @@
 package com.groupmeeting;
 
-import com.groupmeeting.user.entity.User;
+import com.groupmeeting.global.enums.Role;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.ArrayList;
 import java.util.List;
 
-@SpringBootTest
+//@SpringBootTest
 public class AsyncTestClass {
     @Autowired
     private UseTest useTest;
@@ -62,5 +62,12 @@ public class AsyncTestClass {
         ).toList();
 
         System.out.println(111);
+    }
+
+    @Test
+    public void test3() throws Exception {
+        Role user = Role.USER;
+        System.out.println(user);
+        System.out.println(user.securityRole());
     }
 }

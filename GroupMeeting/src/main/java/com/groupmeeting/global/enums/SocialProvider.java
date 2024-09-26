@@ -1,4 +1,4 @@
-package com.groupmeeting.user.type;
+package com.groupmeeting.global.enums;
 
 public enum SocialProvider {
     KAKAO, APPLE
