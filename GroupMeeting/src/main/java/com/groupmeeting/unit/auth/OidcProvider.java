@@ -1,7 +1,6 @@
-package com.groupmeeting.auth;
+package com.groupmeeting.unit.auth;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.groupmeeting.global.enums.ExceptionReturnCode;
 import com.groupmeeting.global.exception.custom.JwtException;
 
 import java.io.IOException;

@@ -1,0 +1,25 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: false
+
+  cloud:
+    aws:
+      credentials:
+        access-key: test
+        secret-key: test
+      region:
+        static: ap-northeast-2
+
+oauth:
+  kakao:
+    public-key-info: https://kauth.kakao.com/.well-known/jwks.json
+  apple:
+    public-key-url: https://appleid.apple.com/auth/keys
+
+jwt:
+  secret: testestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestest
+  expiration:
+    access-token: 1814400000
+    refresh-token: 2592000000

@@ -1,4 +1,4 @@
-package com.groupmeeting.auth;
+package com.groupmeeting.unit.auth;
 
 public record OidcPublicKey(
         String kid,

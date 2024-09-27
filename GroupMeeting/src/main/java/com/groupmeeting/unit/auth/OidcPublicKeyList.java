@@ -1,6 +1,5 @@
-package com.groupmeeting.auth;
+package com.groupmeeting.unit.auth;
 
-import com.groupmeeting.global.enums.ExceptionReturnCode;
 import com.groupmeeting.global.exception.custom.JwtException;
 
 import java.util.List;

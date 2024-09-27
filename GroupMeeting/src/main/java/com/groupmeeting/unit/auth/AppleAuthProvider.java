@@ -1,4 +1,4 @@
-package com.groupmeeting.auth;
+package com.groupmeeting.unit.auth;
 
 import com.groupmeeting.global.client.AppleAuthClient;
 import lombok.RequiredArgsConstructor;

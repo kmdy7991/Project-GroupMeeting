@@ -1,4 +1,4 @@
-package com.groupmeeting.meet;
+package com.groupmeeting.unit.meet;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

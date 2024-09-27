@@ -1,4 +1,4 @@
-package com.groupmeeting.meet;
+package com.groupmeeting.unit.meet;
 
 public record InviteDto(String id, String name, String imageUrl) {
 }

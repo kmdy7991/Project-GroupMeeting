@@ -1,6 +1,6 @@
 package com.groupmeeting.global.filter;
 
-import com.groupmeeting.auth.JwtProvider;
+import com.groupmeeting.unit.auth.JwtProvider;
 
 import com.groupmeeting.global.enums.ExceptionReturnCode;
 import com.groupmeeting.global.exception.custom.JwtException;

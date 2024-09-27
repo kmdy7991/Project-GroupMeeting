@@ -1,6 +1,6 @@
 package com.groupmeeting.global.resolver;
 
-import com.groupmeeting.auth.OAuthUserDetails;
+import com.groupmeeting.unit.auth.OAuthUserDetails;
 
 import com.groupmeeting.entity.user.User;
 

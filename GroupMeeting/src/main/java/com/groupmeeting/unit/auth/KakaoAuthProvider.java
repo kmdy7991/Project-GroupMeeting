@@ -1,10 +1,9 @@
-package com.groupmeeting.auth;
+package com.groupmeeting.unit.auth;
 
 import com.groupmeeting.global.client.KakaoAuthClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.security.AuthProvider;
 import java.security.PublicKey;
 
 @Component
