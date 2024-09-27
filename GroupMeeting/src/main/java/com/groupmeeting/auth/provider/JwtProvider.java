@@ -1,7 +1,9 @@
-package com.groupmeeting.unit.auth;
+package com.groupmeeting.auth.provider;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import com.groupmeeting.auth.token.JsonWebToken;
+import com.groupmeeting.auth.oauth.OAuthUserDetails;
 import com.groupmeeting.entity.user.User;
 import com.groupmeeting.global.utils.JwtUtil;
 import com.groupmeeting.global.exception.custom.JwtException;
@@ -35,9 +37,9 @@ public class JwtProvider {
     public JwtProvider(
             JwtUtil jwtUtil,
             ObjectMapper objectMapper,
-            @Value("${jwt.expiration.access-token}")
+            @Value("${jwt.expire.access}")
             Long accessTokenExpired,
-            @Value("${jwt.expiration.refresh-token}")
+            @Value("${jwt.expire.refresh}")
             Long refreshTokenExpired,
             @Value("${jwt.grant-type}")
             String grantType,

@@ -4,6 +4,7 @@ import com.groupmeeting.global.annotation.auth.AccessToken;
 import com.groupmeeting.global.enums.ExceptionReturnCode;
 import com.groupmeeting.global.exception.custom.JwtException;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.core.MethodParameter;
 
 import org.springframework.web.bind.support.WebDataBinderFactory;
@@ -23,12 +24,12 @@ public class AccessTokenResolver implements HandlerMethodArgumentResolver {
 
     @Override
     public String resolveArgument(
-            MethodParameter parameter,
+            @NotNull MethodParameter parameter,
             ModelAndViewContainer mavContainer,
             NativeWebRequest webRequest,
             WebDataBinderFactory binderFactory
     ) {
-        String accessToken = webRequest.getParameter("Authorization");
+        String accessToken = webRequest.getHeader("Authorization");
 
         if(!hasLength(accessToken)){
             throw new JwtException(EMPTY_ACCESS);

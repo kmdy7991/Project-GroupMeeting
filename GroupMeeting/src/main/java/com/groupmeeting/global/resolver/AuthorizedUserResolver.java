@@ -1,10 +1,11 @@
 package com.groupmeeting.global.resolver;
 
-import com.groupmeeting.unit.auth.OAuthUserDetails;
+import com.groupmeeting.auth.oauth.OAuthUserDetails;
 
 import com.groupmeeting.entity.user.User;
 
 import com.groupmeeting.global.annotation.auth.SignUser;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.core.MethodParameter;
 
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -26,11 +27,11 @@ public class AuthorizedUserResolver implements HandlerMethodArgumentResolver {
 
     @Override
     public User resolveArgument(
-            MethodParameter parameter,
+            @NotNull MethodParameter parameter,
             ModelAndViewContainer mavContainer,
-            NativeWebRequest webRequest,
+            @NotNull NativeWebRequest webRequest,
             WebDataBinderFactory binderFactory
-    ) throws Exception {
+    ) {
         final OAuthUserDetails userDetails = (OAuthUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return isNull(userDetails) ? null : userDetails.getUser();
     }

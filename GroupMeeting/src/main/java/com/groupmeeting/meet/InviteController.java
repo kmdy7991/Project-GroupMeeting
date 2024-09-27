@@ -1,4 +1,4 @@
-package com.groupmeeting.unit.meet;
+package com.groupmeeting.meet;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;

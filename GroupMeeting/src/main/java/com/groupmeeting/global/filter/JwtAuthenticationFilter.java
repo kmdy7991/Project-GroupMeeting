@@ -1,6 +1,6 @@
 package com.groupmeeting.global.filter;
 
-import com.groupmeeting.unit.auth.JwtProvider;
+import com.groupmeeting.auth.provider.JwtProvider;
 
 import com.groupmeeting.global.enums.ExceptionReturnCode;
 import com.groupmeeting.global.exception.custom.JwtException;
@@ -29,9 +29,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     public JwtAuthenticationFilter(
             JwtProvider jwtProvider,
-
             @Value("${jwt.access-header}") String accessHeader,
-
             @Value("${jwt.grant-type}") String grantType
     ) {
         this.jwtProvider = jwtProvider;

@@ -21,13 +21,12 @@ import org.springframework.web.multipart.MultipartFile;
 public class UserController {
     private final UserService userService;
 
-    @SwaggerSuccess(summary = "api test",implementation = GetUserDto.class)
+    @SwaggerSuccess(summary = "api test", implementation = GetUserDto.class)
     @SwaggerFailed
     @GetMapping("/info")
     public ResponseEntity<GetUserDto> getMyInfo(
             @AuthenticationPrincipal CustomUserDetails userDetails
-    ) throws ResourceNotFoundException
-    {
+    ) throws ResourceNotFoundException {
         return ResponseEntity.ok(userService.getInfo(userDetails.getId()));
     }
 
@@ -56,7 +55,7 @@ public class UserController {
             @AuthenticationPrincipal CustomUserDetails userDetails,
             @RequestParam(required = false) String nickname,
             @RequestPart(required = false) MultipartFile profileImg
-    ) throws BadRequestException{
+    ) throws BadRequestException {
         var updateUserInfo = userService.updateInfo(userDetails.getId(), new UpdateUserDto(nickname, profileImg));
         return ResponseEntity.ok(updateUserInfo);
     }
@@ -69,6 +68,4 @@ public class UserController {
         userService.updateDeviceInfo(userDetails.getId(), updateUserDeviceDto);
         return ResponseEntity.ok().build();
     }
-
-
 }

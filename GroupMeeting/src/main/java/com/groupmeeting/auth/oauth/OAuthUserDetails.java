@@ -1,4 +1,4 @@
-package com.groupmeeting.unit.auth;
+package com.groupmeeting.auth.oauth;
 
 import com.groupmeeting.entity.user.User;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.groupmeeting.unit.auth;
+package com.groupmeeting.auth.token;
 
 import lombok.Builder;
 

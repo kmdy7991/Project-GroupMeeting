@@ -42,6 +42,9 @@ public class S3ImageServiceTest {
 
     private S3ImageService s3ImageService;
 
+    private final String FILENAME = "testImage.jpg";
+    private final String FOLDER = "test";
+
     @BeforeEach
     public void setUp() {
         this.s3ImageService = new S3ImageService(s3Template, "temp");
@@ -50,11 +53,9 @@ public class S3ImageServiceTest {
     @Test
     @DisplayName("이미지를 저장하고 파일명을 반환한다.")
     void uploadImage() throws NotImageRequestException, IOException {
-        String fileName = "testImage.jpg";
-        String folder = "test";
-        MultipartFile file = new MockMultipartFile("file", fileName, "image/jpg", "test image content".getBytes());
+        MultipartFile file = new MockMultipartFile("file", FILENAME, "image/jpg", "test image content".getBytes());
 
-        String result = s3ImageService.uploadImage(folder, file);
+        String result = s3ImageService.uploadImage(FOLDER, file);
 
         assertThat(result.endsWith("jpg")).isEqualTo(true);
     }
@@ -62,22 +63,18 @@ public class S3ImageServiceTest {
     @Test
     @DisplayName("콘텐츠 타입이 이미지가 아니라면 예외가 발생한다.")
     void uploadNotImage() {
-        String fileName = "testImage.txt";
-        String folder = "test";
-        MultipartFile file = new MockMultipartFile("file", fileName, "text/plain", "test image content".getBytes());
+        MultipartFile file = new MockMultipartFile("file", "test.txt", "text/plain", "test image content".getBytes());
 
         assertThrows(NotImageRequestException.class,
-                () -> s3ImageService.uploadImage(folder, file));
+                () -> s3ImageService.uploadImage(FOLDER, file));
     }
 
     @Test
     @DisplayName("저장된 이미지를 삭제할 수 있다.")
     void deleteImage() throws NotImageRequestException, IOException {
-        String fileName = "testImage.jpg";
-        String folder = "test";
-        MultipartFile file = new MockMultipartFile("file", fileName, "image/jpeg", "test image content".getBytes());
+        MultipartFile file = new MockMultipartFile("file", FILENAME, "image/jpeg", "test image content".getBytes());
 
-        String result = s3ImageService.uploadImage(folder, file);
+        String result = s3ImageService.uploadImage(FOLDER, file);
 
         s3ImageService.deleteImage(result);
     }
@@ -85,11 +82,9 @@ public class S3ImageServiceTest {
     @Test
     @DisplayName("저장된 이미지의 URL을 반환한다.")
     void findImage() throws NotImageRequestException, IOException {
-        String fileName = "testImage.jpg";
-        String folder = "test";
-        MultipartFile file = new MockMultipartFile("file", fileName, "image/jpeg", "test image content".getBytes());
+        MultipartFile file = new MockMultipartFile("file", FILENAME, "image/jpeg", "test image content".getBytes());
 
-        String result = s3ImageService.uploadImage(folder, file);
+        String result = s3ImageService.uploadImage(FOLDER, file);
 
         assertThat("https://temp.s3.ap-northeast-2.amazonaws.com" + result).isEqualTo(s3ImageService.getImageUrl(result));
     }

@@ -1,4 +1,4 @@
-package com.groupmeeting.unit.auth;
+package com.groupmeeting.auth.key;
 
 import com.groupmeeting.global.exception.custom.JwtException;
 

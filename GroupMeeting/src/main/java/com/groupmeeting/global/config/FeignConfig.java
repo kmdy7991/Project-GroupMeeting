@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import java.time.Duration;
 
 @Configuration
-@EnableFeignClients
+@EnableFeignClients(basePackages = "com.groupmeeting.global.client")
 public class FeignConfig {
     @Bean
     Logger.Level feignLoggerLevel() {

@@ -3,7 +3,7 @@ package com.groupmeeting.global.enums;
 import lombok.Getter;
 
 @Getter
-public enum ExceptionReturnCode {
+public enum  ExceptionReturnCode {
     SUCCESS("1000", "요청에 성공하셨습니다."),
 
     // 토큰 관련 (1100 ~ 1150)

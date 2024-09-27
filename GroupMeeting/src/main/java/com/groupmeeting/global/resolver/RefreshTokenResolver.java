@@ -3,6 +3,7 @@ package com.groupmeeting.global.resolver;
 import com.groupmeeting.global.annotation.auth.RefreshToken;
 import com.groupmeeting.global.enums.ExceptionReturnCode;
 import com.groupmeeting.global.exception.custom.JwtException;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
@@ -22,12 +23,12 @@ public class RefreshTokenResolver implements HandlerMethodArgumentResolver {
 
     @Override
     public String resolveArgument(
-            MethodParameter parameter,
+            @NotNull MethodParameter parameter,
             ModelAndViewContainer mavContainer,
             NativeWebRequest webRequest,
             WebDataBinderFactory binderFactory
-    ) throws Exception {
-        final String refreshToken = webRequest.getParameter("Refresh");
+    ) {
+        final String refreshToken = webRequest.getHeader("Refresh");
 
         if(!hasLength(refreshToken)){
             throw new JwtException(EMPTY_REFRESH);
