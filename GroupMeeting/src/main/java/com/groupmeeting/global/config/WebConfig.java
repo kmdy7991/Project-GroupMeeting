@@ -6,12 +6,12 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
-import okhttp3.OkHttp;
+
 import okhttp3.OkHttpClient;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -25,7 +25,7 @@ public class WebConfig {
      *
      * ObjectMapper는 생성비용이 크다 -> Bean으로 생성 후 재사용
      *
-     * FAIL_ON_UNKNOWN_PROPERTIES -> 모르는
+     * FAIL_ON_UNKNOWN_PROPERTIES -> 정의되지 않은 프로퍼티는 무시
      * */
     @Bean
     public ObjectMapper objectMapper() {
@@ -51,5 +51,4 @@ public class WebConfig {
     public OkHttpClient okHttp() {
         return new OkHttpClient.Builder().build();
     }
-
 }

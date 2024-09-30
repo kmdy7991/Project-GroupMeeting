@@ -38,10 +38,4 @@ public class Meeting extends BaseTimeEntity {
     @OneToMany(mappedBy = "meeting")
     private List<MeetingPlan> plans;
 
-//    public String getImageUrl(){
-//        if(this.getMainImageName() != null){
-//            return null;
-//        }
-//        return this.getMainImageName();
-//    }
 }

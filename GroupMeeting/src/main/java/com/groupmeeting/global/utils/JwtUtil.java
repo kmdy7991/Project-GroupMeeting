@@ -1,23 +1,24 @@
 package com.groupmeeting.global.utils;
 
+import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 
 import javax.crypto.SecretKey;
 
-@Component
+@Configuration
 public class JwtUtil {
-    private final String secretKey;
+    private final String secret;
 
-    public JwtUtil(@Value("${jwt.secret}") String secretKey) {
-        this.secretKey = secretKey;
+    public JwtUtil(@Value("${jwt.secret}") String secret) {
+        this.secret = secret;
     }
 
     @Bean
-    public SecretKey getSecretKey() {
-        return Keys.hmacShaKeyFor(secretKey.getBytes());
+    public SecretKey secretKey() {
+        return Keys.hmacShaKeyFor(Decoders.BASE64.decode(secret));
     }
 }

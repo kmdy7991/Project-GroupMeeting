@@ -1,20 +1,23 @@
-package com.groupmeeting.base;
+package com.groupmeeting.test.base.object;
+
+import com.groupmeeting.global.config.JpaAuditingConfig;
 
 import com.navercorp.fixturemonkey.FixtureMonkey;
 import com.navercorp.fixturemonkey.api.introspector.BuilderArbitraryIntrospector;
-import com.navercorp.fixturemonkey.api.introspector.ConstructorArbitraryIntrospector;
 import com.navercorp.fixturemonkey.api.introspector.ConstructorPropertiesArbitraryIntrospector;
 import com.navercorp.fixturemonkey.api.introspector.FieldReflectionArbitraryIntrospector;
 import com.navercorp.fixturemonkey.jakarta.validation.plugin.JakartaValidationPlugin;
+
 import org.junit.jupiter.api.extension.ExtendWith;
+
 import org.mockito.junit.jupiter.MockitoExtension;
+
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
 
-//@Import(JpaConfig)
+@Import(JpaAuditingConfig.class)
 @ActiveProfiles("test")
 @ExtendWith(MockitoExtension.class)
-
 public abstract class MockitoTest {
     protected final FixtureMonkey getConstructorMonkey() {
         return FixtureMonkey.builder()

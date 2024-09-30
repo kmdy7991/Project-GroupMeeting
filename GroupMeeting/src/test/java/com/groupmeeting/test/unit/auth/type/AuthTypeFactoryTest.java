@@ -1,10 +1,10 @@
-package com.groupmeeting.unit.auth;
+package com.groupmeeting.test.unit.auth.type;
 
 import com.groupmeeting.auth.oauth.AuthProviderFactory;
 import com.groupmeeting.auth.provider.AppleAuthProvider;
 import com.groupmeeting.auth.provider.KakaoAuthProvider;
 
-import com.groupmeeting.base.MockitoTest;
+import com.groupmeeting.test.base.object.MockitoTest;
 
 import com.groupmeeting.global.enums.ExceptionReturnCode;
 import com.groupmeeting.global.enums.SocialProvider;

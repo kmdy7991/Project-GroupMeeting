@@ -1,45 +1,31 @@
-package com.groupmeeting.unit.image;
+package com.groupmeeting.test.unit.global.image;
 
 import com.groupmeeting.global.exception.custom.NotImageRequestException;
 import com.groupmeeting.global.image.S3ImageService;
-
-import io.awspring.cloud.s3.*;
-
+import com.groupmeeting.test.base.object.MockitoTest;
+import io.awspring.cloud.s3.S3Template;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-
-import org.mockito.Answers;
-import org.mockito.junit.jupiter.MockitoExtension;
-
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Spy;
 import org.springframework.mock.web.MockMultipartFile;
-import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.web.multipart.MultipartFile;
-
-import software.amazon.awssdk.services.s3.S3Client;
-import software.amazon.awssdk.services.s3.presigner.S3Presigner;
 
 import java.io.IOException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doReturn;
 
-@ActiveProfiles("test")
-@ExtendWith(MockitoExtension.class)
-public class S3ImageServiceTest {
-    private final S3Client client = mock(S3Client.class);
+public class S3ImageServiceTest extends MockitoTest {
+    @Mock
+    private S3Template s3Template;
 
-    private final S3OutputStreamProvider s3OutputStreamProvider =
-            mock(S3OutputStreamProvider.class, Answers.RETURNS_DEEP_STUBS);
-
-    private final S3ObjectConverter s3ObjectConverter = mock(S3ObjectConverter.class);
-
-    private final S3Presigner s3Presigner = mock(S3Presigner.class);
-
-    private final S3Template s3Template = new S3Template(client, s3OutputStreamProvider, s3ObjectConverter, s3Presigner);
-
+    @Spy
+    @InjectMocks
     private S3ImageService s3ImageService;
 
     private final String FILENAME = "testImage.jpg";
@@ -47,13 +33,15 @@ public class S3ImageServiceTest {
 
     @BeforeEach
     public void setUp() {
-        this.s3ImageService = new S3ImageService(s3Template, "temp");
+        ReflectionTestUtils.setField(s3ImageService, "BUCKET", "test");
     }
 
     @Test
     @DisplayName("이미지를 저장하고 파일명을 반환한다.")
     void uploadImage() throws NotImageRequestException, IOException {
         MultipartFile file = new MockMultipartFile("file", FILENAME, "image/jpg", "test image content".getBytes());
+
+        doReturn(FILENAME).when(s3ImageService).uploadImage(FOLDER, file);
 
         String result = s3ImageService.uploadImage(FOLDER, file);
 
@@ -74,6 +62,8 @@ public class S3ImageServiceTest {
     void deleteImage() throws NotImageRequestException, IOException {
         MultipartFile file = new MockMultipartFile("file", FILENAME, "image/jpeg", "test image content".getBytes());
 
+        doReturn(FILENAME).when(s3ImageService).uploadImage(FOLDER, file);
+
         String result = s3ImageService.uploadImage(FOLDER, file);
 
         s3ImageService.deleteImage(result);
@@ -84,8 +74,10 @@ public class S3ImageServiceTest {
     void findImage() throws NotImageRequestException, IOException {
         MultipartFile file = new MockMultipartFile("file", FILENAME, "image/jpeg", "test image content".getBytes());
 
+        doReturn(FILENAME).when(s3ImageService).uploadImage(FOLDER, file);
+
         String result = s3ImageService.uploadImage(FOLDER, file);
 
-        assertThat("https://temp.s3.ap-northeast-2.amazonaws.com" + result).isEqualTo(s3ImageService.getImageUrl(result));
+        assertThat("https://test.s3.ap-northeast-2.amazonaws.com" + result).isEqualTo(s3ImageService.getImageUrl(result));
     }
 }

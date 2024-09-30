@@ -17,18 +17,16 @@ import org.springframework.security.config.annotation.web.configurers.HeadersCon
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import java.util.Arrays;
-import java.util.List;
 
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
+    private final CorsConfig corsConfig;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final JwtExceptionFilter jwtExceptionFilter;
 
@@ -36,18 +34,27 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
+
                 .httpBasic(AbstractHttpConfigurer::disable)
+
                 .formLogin(AbstractHttpConfigurer::disable)
+
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+
                 .headers(header -> header.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable))
+
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+
                 .authorizeHttpRequests(setAuthorizePath())
+
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(jwtExceptionFilter, JwtAuthenticationFilter.class)
+
                 .build();
     }
 
-    private Customizer<AuthorizeHttpRequestsConfigurer<HttpSecurity>.AuthorizationManagerRequestMatcherRegistry> setAuthorizePath() {
+    @Bean
+    public Customizer<AuthorizeHttpRequestsConfigurer<HttpSecurity>.AuthorizationManagerRequestMatcherRegistry> setAuthorizePath() {
         return auth -> auth
                 .requestMatchers("/error", "/favicon.ico").permitAll()
                 .anyRequest().permitAll();
@@ -55,12 +62,13 @@ public class SecurityConfig {
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
-        var configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("*"));
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "PATCH"));
-        configuration.setAllowedHeaders(List.of("*"));
+        CorsConfiguration configuration = new CorsConfiguration();
 
-        var source = new UrlBasedCorsConfigurationSource();
+        configuration.setAllowedOrigins(corsConfig.getAllowedOrigins());
+        configuration.setAllowedHeaders(corsConfig.getAllowedHeaders());
+        configuration.setAllowedMethods(corsConfig.getAllowedMethods());
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
 
         return source;

@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.groupmeeting.global.enums.ExceptionReturnCode;
 import com.groupmeeting.global.exception.custom.JwtException;
-import com.groupmeeting.global.utils.CustomResponse;
+import com.groupmeeting.global.exception.response.ExceptionResponse;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -44,7 +44,7 @@ public class JwtExceptionFilter extends OncePerRequestFilter {
 
         try {
             response.getWriter().write(toJson(
-                    new CustomResponse<>(
+                    new ExceptionResponse<>(
                             returnCode.getCode(),
                             returnCode.getMessage(),
                             null

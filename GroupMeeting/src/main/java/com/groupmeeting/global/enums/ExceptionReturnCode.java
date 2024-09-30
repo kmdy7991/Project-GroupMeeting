@@ -22,8 +22,6 @@ public enum  ExceptionReturnCode {
     METHOD_NOT_ALLOWED("9001", "허용되지 않은 메소드 입니다."),
 
     // 서버 에러 (9997 ~ 9999)
-    SEND_EMAIL_ERROR("9996", "이메일 전송 에러 입니다."),
-    LOCK_RESOURCES_ERROR("9997", "락에 의해 리소스을 점유할 수 없습니다."),
     INTERNAL_SERVER_ERROR("9998", "내부 서버 에러 입니다."),
     EXTERNAL_SERVER_ERROR("9999", "외부 서버 에러 입니다.");
 

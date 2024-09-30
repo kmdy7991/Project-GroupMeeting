@@ -1,7 +1,7 @@
 package com.groupmeeting.global.exception;
 
 import com.groupmeeting.global.exception.custom.*;
-import com.groupmeeting.global.utils.CustomResponse;
+import com.groupmeeting.global.exception.response.ExceptionResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -12,10 +12,10 @@ import org.springframework.web.method.annotation.HandlerMethodValidationExceptio
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<CustomResponse<Object>> handleEntityNotFoundException(ResourceNotFoundException e) {
+    public ResponseEntity<ExceptionResponse<Object>> handleEntityNotFoundException(ResourceNotFoundException e) {
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
-                .body(new CustomResponse<>(
+                .body(new ExceptionResponse<>(
                                 HttpStatus.NOT_FOUND.toString(),
                                 e.getMessage() != null ? e.getMessage() : "",
                                 null
@@ -24,10 +24,10 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(HandlerMethodValidationException.class)
-    public ResponseEntity<CustomResponse<Object>> handleValidationException(HandlerMethodValidationException e) {
+    public ResponseEntity<ExceptionResponse<Object>> handleValidationException(HandlerMethodValidationException e) {
         return ResponseEntity
                 .status(HttpStatus.UNPROCESSABLE_ENTITY)
-                .body(new CustomResponse<>(
+                .body(new ExceptionResponse<>(
                                 HttpStatus.UNPROCESSABLE_ENTITY.toString(),
                                 e.getMessage(),
                                 null
@@ -36,10 +36,10 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(JwtException.class)
-    public ResponseEntity<CustomResponse<Object>> handleJwtExceptionException(JwtException e) {
+    public ResponseEntity<ExceptionResponse<Object>> handleJwtExceptionException(JwtException e) {
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
-                .body(new CustomResponse<>(
+                .body(new ExceptionResponse<>(
                                 e.getExceptionReturnCode().getCode(),
                                 e.getExceptionReturnCode().getMessage(),
                                 null
@@ -48,10 +48,10 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(BadRequestException.class)
-    public ResponseEntity<CustomResponse<Object>> handleBadRequestException(BadRequestException e) {
+    public ResponseEntity<ExceptionResponse<Object>> handleBadRequestException(BadRequestException e) {
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
-                .body(new CustomResponse<>(
+                .body(new ExceptionResponse<>(
                                 HttpStatus.BAD_REQUEST.toString(),
                                 e.getMessage() != null ? e.getMessage() : "",
                                 null
@@ -60,10 +60,10 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(UnAuthorizedException.class)
-    public ResponseEntity<CustomResponse<Object>> handleUnauthorizedException(UnAuthorizedException e) {
+    public ResponseEntity<ExceptionResponse<Object>> handleUnauthorizedException(UnAuthorizedException e) {
         return ResponseEntity
                 .status(HttpStatus.UNAUTHORIZED)
-                .body(new CustomResponse<>(
+                .body(new ExceptionResponse<>(
                         HttpStatus.UNAUTHORIZED.toString(),
                         e.getMessage() != null ? e.getMessage() : "",
                         null)
@@ -71,10 +71,10 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(NotImageRequestException.class)
-    public ResponseEntity<CustomResponse<Object>> handleNotImageException(UnAuthorizedException e) {
+    public ResponseEntity<ExceptionResponse<Object>> handleNotImageException(UnAuthorizedException e) {
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
-                .body(new CustomResponse<>(
+                .body(new ExceptionResponse<>(
                                 HttpStatus.UNAUTHORIZED.toString(),
                                 e.getMessage() != null ? e.getMessage() : "",
                                 null
@@ -84,10 +84,10 @@ public class GlobalExceptionHandler {
 
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<CustomResponse<Object>> handleOtherException(Exception e) {
+    public ResponseEntity<ExceptionResponse<Object>> handleOtherException(Exception e) {
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(new CustomResponse<>(
+                .body(new ExceptionResponse<>(
                                 HttpStatus.INTERNAL_SERVER_ERROR.toString(),
                                 String.format("%s with stack trace: %s", e.getMessage(), getStackTraceConvertString(e)),
                                 null

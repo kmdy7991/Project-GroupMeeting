@@ -40,7 +40,7 @@ public class User {
     private SocialProvider socialProvider;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "role", length = 10)
+    @Column(name = "role", length = 10, updatable = false)
     private Role role;
 
     @Builder

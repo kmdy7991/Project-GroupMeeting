@@ -50,7 +50,7 @@ public class S3ImageService {
         }
     }
 
-    public String getImageUrl(String filename) throws NotImageRequestException {
+    public String getImageUrl(String filename) {
         return "https://" +
                 BUCKET +
                 ".s3.ap-northeast-2.amazonaws.com" +
