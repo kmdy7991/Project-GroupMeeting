@@ -1,7 +1,7 @@
 package com.groupmeeting.user.service;
 
-import com.groupmeeting.global.exception.custom.BadRequestException;
-import com.groupmeeting.global.exception.custom.ResourceNotFoundException;
+import com.groupmeeting.core.exception.custom.BadRequestException;
+import com.groupmeeting.core.exception.custom.ResourceNotFoundException;
 import com.groupmeeting.user.dto.GetUserDto;
 import com.groupmeeting.user.dto.RandomNicknameDto;
 import com.groupmeeting.user.dto.UpdateUserDeviceDto;

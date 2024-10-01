@@ -1,6 +1,6 @@
 package com.groupmeeting.auth.key;
 
-import com.groupmeeting.global.exception.custom.JwtException;
+import com.groupmeeting.core.exception.custom.JwtException;
 
 import java.util.List;
 

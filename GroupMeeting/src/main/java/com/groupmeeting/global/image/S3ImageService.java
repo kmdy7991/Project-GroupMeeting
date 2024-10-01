@@ -1,19 +1,19 @@
 package com.groupmeeting.global.image;
 
-import com.groupmeeting.global.exception.custom.NotImageRequestException;
+import com.groupmeeting.core.exception.custom.NotImageRequestException;
+
 import io.awspring.cloud.s3.ObjectMetadata;
 import io.awspring.cloud.s3.S3Resource;
 import io.awspring.cloud.s3.S3Template;
-import jdk.jfr.ContentType;
-import lombok.RequiredArgsConstructor;
+
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.InputStream;
+
 import java.util.UUID;
 
 @Service

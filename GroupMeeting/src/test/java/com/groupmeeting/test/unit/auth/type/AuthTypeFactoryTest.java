@@ -1,14 +1,14 @@
 package com.groupmeeting.test.unit.auth.type;
 
-import com.groupmeeting.auth.oauth.AuthProviderFactory;
-import com.groupmeeting.auth.provider.AppleAuthProvider;
-import com.groupmeeting.auth.provider.KakaoAuthProvider;
+import com.groupmeeting.auth.factory.AuthProviderFactory;
+import com.groupmeeting.auth.provider.impl.AppleAuthProvider;
+import com.groupmeeting.auth.provider.impl.KakaoAuthProvider;
 
 import com.groupmeeting.test.base.object.MockitoTest;
 
 import com.groupmeeting.global.enums.ExceptionReturnCode;
 import com.groupmeeting.global.enums.SocialProvider;
-import com.groupmeeting.global.exception.custom.JwtException;
+import com.groupmeeting.core.exception.custom.JwtException;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

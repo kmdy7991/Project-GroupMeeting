@@ -1,8 +1,8 @@
 package com.groupmeeting.test.unit.global.resolver;
 
 import com.groupmeeting.test.base.object.MockitoTest;
-import com.groupmeeting.global.annotation.auth.AccessToken;
-import com.groupmeeting.global.resolver.AccessTokenResolver;
+import com.groupmeeting.core.annotation.auth.AccessToken;
+import com.groupmeeting.core.resolver.AccessTokenResolver;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,9 +1,9 @@
 package com.groupmeeting.user.controller;
 
-import com.groupmeeting.global.annotation.docs.SwaggerFailed;
-import com.groupmeeting.global.annotation.docs.SwaggerSuccess;
-import com.groupmeeting.global.exception.custom.BadRequestException;
-import com.groupmeeting.global.exception.custom.ResourceNotFoundException;
+import com.groupmeeting.core.annotation.docs.SwaggerFailed;
+import com.groupmeeting.core.annotation.docs.SwaggerSuccess;
+import com.groupmeeting.core.exception.custom.BadRequestException;
+import com.groupmeeting.core.exception.custom.ResourceNotFoundException;
 import com.groupmeeting.user.dto.CustomUserDetails;
 import com.groupmeeting.user.dto.GetUserDto;
 import com.groupmeeting.user.dto.UpdateUserDeviceDto;

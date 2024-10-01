@@ -2,7 +2,7 @@ package com.groupmeeting.auth.provider;
 
 import com.groupmeeting.auth.key.OidcPublicKey;
 import com.groupmeeting.auth.key.OidcPublicKeyList;
-import com.groupmeeting.global.exception.custom.JwtException;
+import com.groupmeeting.core.exception.custom.JwtException;
 import org.springframework.stereotype.Component;
 
 import java.math.BigInteger;

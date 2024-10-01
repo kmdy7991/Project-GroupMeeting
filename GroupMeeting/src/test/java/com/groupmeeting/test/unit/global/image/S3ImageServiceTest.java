@@ -1,6 +1,6 @@
 package com.groupmeeting.test.unit.global.image;
 
-import com.groupmeeting.global.exception.custom.NotImageRequestException;
+import com.groupmeeting.core.exception.custom.NotImageRequestException;
 import com.groupmeeting.global.image.S3ImageService;
 import com.groupmeeting.test.base.object.MockitoTest;
 import io.awspring.cloud.s3.S3Template;

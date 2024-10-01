@@ -1,25 +1,22 @@
 package com.groupmeeting.test.unit.auth.provider;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.groupmeeting.auth.provider.JwtProvider;
+import com.groupmeeting.auth.provider.impl.JwtProvider;
 import com.groupmeeting.auth.token.JsonWebToken;
 import com.groupmeeting.entity.user.User;
 import com.groupmeeting.global.enums.ExceptionReturnCode;
 import com.groupmeeting.global.enums.Role;
-import com.groupmeeting.global.exception.custom.JwtException;
+import com.groupmeeting.core.exception.custom.JwtException;
 import com.groupmeeting.test.base.object.MockitoTest;
-import com.groupmeeting.global.utils.JwtUtil;
+import com.groupmeeting.core.config.JwtConfig;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Spy;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Import;
 import org.springframework.security.core.Authentication;
 import org.springframework.test.util.ReflectionTestUtils;
@@ -29,7 +26,7 @@ import javax.crypto.SecretKey;
 import static com.groupmeeting.test.base.util.TestUtil.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-@Import(JwtUtil.class)
+@Import(JwtConfig.class)
 public class JwtProviderTest extends MockitoTest {
     @Mock
     private ObjectMapper objectMapper;

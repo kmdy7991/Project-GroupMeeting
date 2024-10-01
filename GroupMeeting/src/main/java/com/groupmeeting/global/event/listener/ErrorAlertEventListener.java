@@ -1,11 +1,9 @@
 package com.groupmeeting.global.event.listener;
 
-import com.groupmeeting.global.annotation.event.ApplicationEventListener;
+import com.groupmeeting.core.annotation.event.ApplicationEventListener;
 import com.groupmeeting.global.event.dto.DiscordMessage;
 import com.groupmeeting.global.event.dto.ErrorAlertMessage;
-import com.groupmeeting.global.event.extractor.ErrorAlertDiscordMessageExtractor;
 import com.groupmeeting.global.event.extractor.MessageExtractor;
-import com.groupmeeting.global.event.sender.DiscordMessageSender;
 import com.groupmeeting.global.event.sender.MessageSender;
 import com.groupmeeting.global.event.template.MessageTemplate;
 import org.springframework.beans.factory.annotation.Qualifier;

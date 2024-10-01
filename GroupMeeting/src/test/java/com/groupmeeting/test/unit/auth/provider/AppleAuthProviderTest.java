@@ -1,14 +1,14 @@
 package com.groupmeeting.test.unit.auth.provider;
 
 import com.groupmeeting.auth.key.OidcPublicKeyList;
-import com.groupmeeting.auth.provider.AppleAuthProvider;
-import com.groupmeeting.auth.provider.JwtProvider;
+import com.groupmeeting.auth.provider.impl.AppleAuthProvider;
+import com.groupmeeting.auth.provider.impl.JwtProvider;
 import com.groupmeeting.auth.provider.PublicKeyProvider;
 import com.groupmeeting.test.base.object.MockitoTest;
 import com.groupmeeting.global.client.AppleAuthClient;
 
 import com.groupmeeting.global.enums.ExceptionReturnCode;
-import com.groupmeeting.global.exception.custom.JwtException;
+import com.groupmeeting.core.exception.custom.JwtException;
 import io.jsonwebtoken.impl.DefaultClaims;
 
 import net.jqwik.api.Arbitraries;

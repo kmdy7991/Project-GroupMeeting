@@ -1,6 +1,6 @@
 package com.groupmeeting.test.base.object;
 
-import com.groupmeeting.global.config.JpaAuditingConfig;
+import com.groupmeeting.core.config.JpaAuditingConfig;
 
 import com.navercorp.fixturemonkey.FixtureMonkey;
 import com.navercorp.fixturemonkey.api.introspector.BuilderArbitraryIntrospector;

@@ -6,5 +6,6 @@ import lombok.Builder;
 public record JsonWebToken(
         String accessToken,
         String refreshToken,
-        String grantType) {
+        String grantType
+) {
 }
