@@ -1,6 +1,9 @@
 package com.groupmeeting.notification.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.groupmeeting.notification.repository.NotificationRepository;
+import com.groupmeeting.user.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
@@ -21,32 +24,16 @@ import java.util.concurrent.CompletableFuture;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class NotificationService {
     private static final String APNS_URL = "https://api.push.apple.com/3/device/";
     private static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
 
     private final NotificationRepository notificationRepository;
     private final UserRepository userRepository;
-
     private final OkHttpClient client;
-
     private final ObjectMapper mapper;
 
-    private final PrivateKey applePrivateKey;
-
-    public NotificationService(
-            NotificationRepository notificationRepository,
-            UserRepository userRepository,
-            OkHttpClient client,
-            ObjectMapper mapper,
-            @Value("${apple.private_key_path}") String applePrivateKeyPath
-    ) throws IOException {
-        this.notificationRepository = notificationRepository;
-        this.userRepository = userRepository;
-        this.client = client;
-        this.mapper = mapper;
-        this.applePrivateKey = AuthService.getPrivateKey(applePrivateKeyPath);
-    }
 
     @SneakyThrows
     public String buildPayload(
