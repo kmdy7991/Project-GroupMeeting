@@ -1,6 +1,7 @@
 package com.groupmeeting.core.aspect;
 
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -17,9 +18,9 @@ import java.util.List;
 @Slf4j
 @Aspect
 @Component
+//@RequiredArgsConstructor
 public class LoggingAspect {
 //    private final DiscordMessageService messageService;
-//    public SimpleLoggingAspect(DiscordMessageService messageService) {this.messageService = messageService;}
 
     @Around("@annotation(com.groupmeeting.core.annotation.log.ApiLogging)")
     public Object processCustomAnnotation(ProceedingJoinPoint joinPoint) throws Throwable {

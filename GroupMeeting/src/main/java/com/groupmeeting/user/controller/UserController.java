@@ -1,13 +1,11 @@
 package com.groupmeeting.user.controller;
 
-import com.groupmeeting.core.annotation.docs.SwaggerFailed;
-import com.groupmeeting.core.annotation.docs.SwaggerSuccess;
 import com.groupmeeting.core.exception.custom.BadRequestException;
 import com.groupmeeting.core.exception.custom.ResourceNotFoundException;
-import com.groupmeeting.user.dto.CustomUserDetails;
-import com.groupmeeting.user.dto.GetUserDto;
-import com.groupmeeting.user.dto.UpdateUserDeviceDto;
-import com.groupmeeting.user.dto.UpdateUserDto;
+import com.groupmeeting.dto.request.user.CustomUserDetails;
+import com.groupmeeting.dto.request.user.GetUserDto;
+import com.groupmeeting.dto.request.user.UpdateUserDeviceDto;
+import com.groupmeeting.dto.request.user.UpdateUserDto;
 import com.groupmeeting.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -21,8 +19,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class UserController {
     private final UserService userService;
 
-    @SwaggerSuccess(summary = "api test", implementation = GetUserDto.class)
-    @SwaggerFailed
     @GetMapping("/info")
     public ResponseEntity<GetUserDto> getMyInfo(
             @AuthenticationPrincipal CustomUserDetails userDetails

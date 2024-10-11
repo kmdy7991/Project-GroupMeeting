@@ -2,10 +2,10 @@ package com.groupmeeting.user.service;
 
 import com.groupmeeting.core.exception.custom.BadRequestException;
 import com.groupmeeting.core.exception.custom.ResourceNotFoundException;
-import com.groupmeeting.user.dto.GetUserDto;
-import com.groupmeeting.user.dto.RandomNicknameDto;
-import com.groupmeeting.user.dto.UpdateUserDeviceDto;
-import com.groupmeeting.user.dto.UpdateUserDto;
+import com.groupmeeting.dto.request.user.GetUserDto;
+import com.groupmeeting.dto.request.user.RandomNicknameDto;
+import com.groupmeeting.dto.request.user.UpdateUserDeviceDto;
+import com.groupmeeting.dto.request.user.UpdateUserDto;
 import com.groupmeeting.entity.user.User;
 import com.groupmeeting.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
-
 
     public GetUserDto getInfo(Long id) throws ResourceNotFoundException {
         var user = userRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
@@ -45,6 +44,7 @@ public class UserService {
     }
 
     public void updateDeviceInfo(Long id, UpdateUserDeviceDto updateUserDeviceDto) {
+
     }
 
     public void randomUserNickname() {
@@ -54,7 +54,5 @@ public class UserService {
         do {
             nickName = randomNicknameDto.getRandomName();
         } while (!duplicateNickname(nickName));
-
-
     }
 }

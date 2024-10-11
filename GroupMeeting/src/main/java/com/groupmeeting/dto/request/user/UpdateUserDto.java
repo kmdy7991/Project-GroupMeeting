@@ -1,4 +1,4 @@
-package com.groupmeeting.user.dto;
+package com.groupmeeting.dto.request.user;
 
 import org.springframework.web.multipart.MultipartFile;
 

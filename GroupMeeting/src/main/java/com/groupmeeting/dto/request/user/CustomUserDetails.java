@@ -1,4 +1,4 @@
-package com.groupmeeting.user.dto;
+package com.groupmeeting.dto.request.user;
 
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
